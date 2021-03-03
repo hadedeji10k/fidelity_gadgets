@@ -232,8 +232,8 @@ app.get("/verify_transaction", async function (req, res) {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "thekingsluxurywears@gmail.com",
-      pass: "adedeji@1",
+      user: "fidelitygadgets@gmail.com",
+      pass: "adedeji12345",
     },
     tls: {
       rejectUnauthorized: false,
@@ -242,9 +242,9 @@ app.get("/verify_transaction", async function (req, res) {
 
   // send mail to self
   let mailInfo = {
-    from: "thekingsluxurywears@gmail.com",
-    to: "thekingsluxurywears@gmail.com",
-    subject: "The King's Luxury Wears Order",
+    from: "fidelitygadgets@gmail.com",
+    to: "fidelitygadgets@gmail.com",
+    subject: "Fidelity Gadgets' Order",
     html: `
       <p> An Order has been received </p>
       <p> Reference ID is ${reference}</p>
@@ -267,15 +267,15 @@ app.get("/verify_transaction", async function (req, res) {
 
   // send mail to customer
   let mailInfo2 = {
-    from: "thekingsluxurywears@gmail.com",
+    from: "fidelitygadgets@gmail.com",
     to: userEmail,
-    subject: "The King's Luxury Wears Order",
+    subject: "Fidelity Gadgets' Order",
     html: `
       <p> Your Order has been received. </p>
       <p> Your reference ID is ${reference}.</p>
       <p>Your Orders are as follow: </p>
       <p> ${cart} </p>
-      <p> For any further enquiries, please Contact 07068180167 or email us at thekingsluxurywears@gmail.com</p>
+      <p> For any further enquiries, please Contact 08162135402 or email us at fidelitygadgets@gmail.com</p>
       <p>Thanks for your Patronage</p>
       `,
   };

@@ -77,7 +77,7 @@
                 <form class="paymentForm" id="paymentForm" method="post" >
                     <!-- <div class="form-group"> -->
                     <!-- <label for="email">Email Address</label> -->
-                    <input type="hidden" name="email" id="email-address" required value="<%= user.email %>" />
+                    <input type="hidden" name="email" id="email-address" required value="<%= userEmail %>" />
                     <!-- </div> -->
                     <!-- <div class="form-group"> -->
                     <!-- <label for="amount">Amount</label> -->
@@ -85,11 +85,11 @@
                     <!-- </div> -->
                     <!-- <div class="form-group"> -->
                     <!-- <label for="first-name">First Name</label> -->
-                    <input type="hidden" name="firstName" id="first-name" value="<%= user.name %>" />
+                    <input type="hidden" name="firstName" id="first-name" value="<%= userName %>" />
                     <!-- </div> -->
                     <!-- <div class="form-group"> -->
                     <!-- <label for="last-name">Last Name</label> -->
-                    <input type="hidden" name="lastName" id="last-name" value="<%= user.username %>" />
+                    <input type="hidden" name="lastName" id="last-name" value="<%= username %>" />
                     <!-- </div> -->
                     <!-- <div class="form-submit"> -->
                         <% if (loggedIn) { %>

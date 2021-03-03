@@ -141,8 +141,8 @@ router.post("/forgot-password", function (req, res) {
       let transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "thekingsluxurywears@gmail.com",
-          pass: "adedeji@1",
+          user: "fidelitygadgets@gmail.com",
+          pass: "adedeji12345",
         },
         tls: {
           rejectUnauthorized: false,
@@ -158,9 +158,9 @@ router.post("/forgot-password", function (req, res) {
         "/" +
         user.forgot_password_key;
       let mailInfo = {
-        from: "thekingsluxurywears@gmail.com",
+        from: "fidelitygadgets@gmail.com",
         to: email,
-        subject: "The King's Luxury Wears Reset Password",
+        subject: "Fidelity Gadgets' Reset Password",
         html: `
           <h2> Password Reset Link </h2> <br>
           <p>Thanks for your patience, Kindly click the text below to continue your process</p>
