@@ -3,7 +3,7 @@
 
 /*===== VARIABLES CSS =====*/
 :root {
-  --header-height: 3rem;
+  --header-height: 4rem;
 
   /*========== Colors ==========*/
   --first-color: #DA2535;
@@ -577,7 +577,7 @@ input[type="text"] {
   padding: 10px;
   border-radius: 5px;
   outline: none;
-  border: none;
+  /* border: none; */
 }
 
 
@@ -964,13 +964,13 @@ ul.gallery li {
 
 a span i {
     font-size: 35px;
-    color: #028060;
+    color: var(--first-color);
     transition: all 0.3s;
 }
 
 a span i:hover {
     font-size: 38px;
-    color: #024635;
+    color: var(--first-color-alt);
 }
 
 button {
