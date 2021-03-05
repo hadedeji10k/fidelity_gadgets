@@ -13,6 +13,7 @@
                 <tr class="home">
                     <th>Product</th>
                     <th>Price</th>
+                    <th>Discount / Offer Price</th>
                     <th>Type</th>
                     <th>Product Image</th>
                     <th>Edit</th>
@@ -26,6 +27,7 @@
                 <tr>
                     <td> <%= product.title %>  </td>
                     <td>&#8358; <%= parseFloat(product.price).toFixed(2)  %>  </td>
+                    <td>&#8358; <%= parseFloat(product.discountPrice).toFixed(2)  %>  </td>
                     <td> <%= product.type %>  </td>
                     <td> 
 

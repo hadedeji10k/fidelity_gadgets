@@ -39,39 +39,43 @@
     </section>
 
     <!--========== Home-product ==========-->
-    <% homeProducts.forEach(product => { %>
-        <% if (product.type == "discount") { %>
-        <!--========== Discount-product ==========-->
-        <section class="menu section bd-container">
-            <h2 class="section-title">Discount Products</h2>
-            <div class="menu__container bd-grid">
+    <section class="menu section bd-container">
+        <h2 class="section-title">Discount Products</h2>
+        <div class="menu__container bd-grid">
+        <% homeProducts.forEach(product => { %>
+            <% if (product.type == "discount") { %>
+                <!--========== Discount-product ==========-->
                 <div class="menu__content">
                     <img src="/home_images/<%= product.id %>/<%= product.image %>" alt="" class="menu__img">
                     <h3 class="menu__name"><%= product.title %></h3>
                     <span class="menu__detail"><a href="/home-page/<%= product.slug %>">View Details</a></span>
-                    <span class="menu__preci">&#8358;<%= parseFloat(product.price).toFixed(2) %></span>
-                    <del>&#8358;<%= parseFloat(product.discountPrice).toFixed(2) %> </del> <br> <br>
+                    <span class="menu__preci">&#8358;<%= parseFloat(product.discountPrice).toFixed(2) %></span>
+                    <del>&#8358;<%= parseFloat(product.price).toFixed(2) %> </del> <br>
                     <a href="/cart/add/home-page/<%= product.slug %>" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
                 </div>
-            </div>
-        </section>
-        <% } else {%>
-        <!--========== Offer-product ==========-->
-        <section class="menu section bd-container">
-            <h2 class="section-title">Latest Offers</h2>
-            <div class="menu__container bd-grid">
+            <% } %>
+            <% }) %>
+        </div>
+    </section>
+        
+    <section class="menu section bd-container">
+        <h2 class="section-title">Latest Offers</h2>
+        <div class="menu__container bd-grid">
+        <% homeProducts.forEach(product => { %>
+            <% if (product.type == "offer") { %>
+                <!--========== Offer-product ==========-->
                 <div class="menu__content">
                     <img src="/home_images/<%= product.id %>/<%= product.image %>" alt="" class="menu__img">
                     <h3 class="menu__name"><%= product.title %></h3>
                     <span class="menu__detail"><a href="/home-page/<%= product.slug %>">View Details</a></span>
-                    <span class="menu__preci">&#8358;<%= parseFloat(product.price).toFixed(2) %></span>
-                    <del>&#8358;<%= parseFloat(product.discountPrice).toFixed(2) %> </del> <br> <br>
+                    <span class="menu__preci">&#8358;<%= parseFloat(product.discountPrice).toFixed(2) %></span>
+                    <del>&#8358;<%= parseFloat(product.price).toFixed(2) %> </del> <br>
                     <a href="/cart/add/home-page/<%= product.slug %>" class="button menu__button"><i class='bx bx-cart-alt'></i></a>
                 </div>
-            </div>
-        </section>
-        <% } %>
-    <% }) %>
+            <% } %>
+            <% }) %>
+        </div>
+    </section>
     
     <!--===== APP =======-->
     <!-- <section class="app section bd-container">
