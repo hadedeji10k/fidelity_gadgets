@@ -4,17 +4,17 @@ const fs = require("fs");
 const fse = require("fs-extra");
 
 // get Product module
-var Product = require("../models/product");
+let Product = require("../models/product");
 
 // Get category module
-var Category = require("../models/category");
+let Category = require("../models/category");
 const { Store } = require("express-session");
 
 // Get all Product
 router.get("/", async function (req, res) {
   const query = {};
   const sort = { _id: -1 };
-  var count;
+  let count;
 
   const categories = await Category.find();
 
@@ -47,7 +47,7 @@ router.get("/page/:page/:totalPages", async function (req, res) {
     res.redirect("/products");
   }
 
-  var count;
+  let count;
 
   const products = await Product.find()
     .sort({ _id: -1 })
@@ -69,9 +69,9 @@ router.get("/page/:page/:totalPages", async function (req, res) {
 
 // Get products by category
 router.get("/cat/:category", async function (req, res) {
-  var catSlug = req.params.category;
+  let catSlug = req.params.category;
 
-  var count;
+  let count;
   const categories = await Category.find();
 
   Category.findOne({ slug: catSlug }, async function (err, cat) {
@@ -111,7 +111,7 @@ router.get("/cat/:catSlug/:page/:totalPages", async function (req, res) {
     res.redirect("/products/" + catSlug);
   }
 
-  var count;
+  let count;
 
   Category.findOne({ slug: catSlug }, async function (err, cat) {
     const products = await Product.find({ category: catSlug })
@@ -154,7 +154,7 @@ router.get("/cat/:catSlug/:page/:totalPages", async function (req, res) {
 // router.get(
 //   "/get-products-cat/:start/:limit/:catSlug",
 //   async function (req, res) {
-//     var count;
+//     let count;
 
 //     let { start, limit, catSlug } = req.params;
 
@@ -173,13 +173,13 @@ router.get("/cat/:catSlug/:page/:totalPages", async function (req, res) {
 
 // Get single product details
 router.get("/:category/:product", function (req, res) {
-  var galleryImages = null;
+  let galleryImages = null;
 
   Product.findOne({ slug: req.params.product }, function (err, product) {
     if (err) {
       console.log(err);
     } else {
-      var galleryDir = "public/product_images/" + product._id + "/gallery";
+      let galleryDir = "public/product_images/" + product._id + "/gallery";
 
       fs.readdir(galleryDir, function (err, files) {
         if (err) {
@@ -212,7 +212,7 @@ router.post("/search", async function (req, res) {
 
   let slug;
 
-  var count;
+  let count;
 
   if (search == "") {
     slug = "09876543wedfgbnP-0--112bvcdert6yujmn=--bvcfrtyuijm/.'1vfgtyujm,";
@@ -249,7 +249,7 @@ router.get("/search/:search/:page/:totalPages", async function (req, res) {
   //   res.redirect("/products/search");
   // }
 
-  var count;
+  let count;
   let slug;
 
   if (search == "") {

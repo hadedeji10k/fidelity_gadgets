@@ -29,4 +29,4 @@ const HomePageSchema = mongoose.Schema({
   },
 });
 
-var HomePage = (module.exports = mongoose.model("HomePage", HomePageSchema));
+let HomePage = (module.exports = mongoose.model("HomePage", HomePageSchema));

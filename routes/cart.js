@@ -9,14 +9,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // get Product module
-var Product = require("../models/product");
+let Product = require("../models/product");
 
 // get Home Product module
-var HomePage = require("../models/home-page");
+let HomePage = require("../models/home-page");
 
 // Get add product to cart
 router.get("/add/:product", function (req, res) {
-  var slug = req.params.product;
+  let slug = req.params.product;
 
   Product.findOne({ slug: slug }, function (err, product) {
     if (err) {
@@ -32,8 +32,8 @@ router.get("/add/:product", function (req, res) {
         image: "/product_images/" + product._id + "/" + product.image,
       });
     } else {
-      var cart = req.session.cart;
-      var newItem = true;
+      let cart = req.session.cart;
+      let newItem = true;
 
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].title == slug) {
@@ -62,9 +62,9 @@ router.get("/add/:product", function (req, res) {
 
 // GET Update product
 router.get("/update/:product", function (req, res) {
-  var slug = req.params.product;
-  var cart = req.session.cart;
-  var action = req.query.action;
+  let slug = req.params.product;
+  let cart = req.session.cart;
+  let action = req.query.action;
 
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].title == slug) {
@@ -98,7 +98,7 @@ router.get("/update/:product", function (req, res) {
 
 // Get add home product to cart
 router.get("/add/home-page/:product", function (req, res) {
-  var slug = req.params.product;
+  let slug = req.params.product;
 
   HomePage.findOne({ slug: slug }, function (err, product) {
     if (err) {
@@ -114,8 +114,8 @@ router.get("/add/home-page/:product", function (req, res) {
         image: "/home_images/" + product._id + "/" + product.image,
       });
     } else {
-      var cart = req.session.cart;
-      var newItem = true;
+      let cart = req.session.cart;
+      let newItem = true;
 
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].title == slug) {
@@ -144,9 +144,9 @@ router.get("/add/home-page/:product", function (req, res) {
 
 // GET Update home product
 router.get("/update/home-page/:product", function (req, res) {
-  var slug = req.params.product;
-  var cart = req.session.cart;
-  var action = req.query.action;
+  let slug = req.params.product;
+  let cart = req.session.cart;
+  let action = req.query.action;
 
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].title == slug) {

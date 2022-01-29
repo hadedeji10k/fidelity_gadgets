@@ -15,14 +15,14 @@ const app = express();
 app.use(fileUpload());
 
 // get HomePage module
-var HomePage = require("../models/home-page");
+let HomePage = require("../models/home-page");
 
 // get category module
-// var Category = require("../models/category");
+// let Category = require("../models/category");
 
 // GET home-page index
 router.get("/", isAdmin, async function (req, res) {
-  var count;
+  let count;
 
   HomePage.countDocuments(function (err, c) {
     count = c;
@@ -38,11 +38,11 @@ router.get("/", isAdmin, async function (req, res) {
 
 // GET add product
 router.get("/add-product", isAdmin, function (req, res) {
-  var title = "";
-  var desc = "";
-  var price = "";
-  var discountPrice = "";
-  var type = "";
+  let title = "";
+  let desc = "";
+  let price = "";
+  let discountPrice = "";
+  let type = "";
 
   res.render("../admin/add_home_page", {
     title: title,
@@ -56,10 +56,10 @@ router.get("/add-product", isAdmin, function (req, res) {
 // POST add product
 router.post("/add-product", function (req, res) {
   if (!req.files || Object.keys(req.files).length === 0) {
-    // var imageFile = typeof req.files.target_file !== "undefined" ? req.files.target_file.name : "";
-    var imageFile = "";
+    // let imageFile = typeof req.files.target_file !== "undefined" ? req.files.target_file.name : "";
+    let imageFile = "";
   } else {
-    var imageFile =
+    let imageFile =
       typeof req.files.image !== "undefined" ? req.files.image.name : "";
   }
 
@@ -71,14 +71,14 @@ router.post("/add-product", function (req, res) {
     .isDecimal();
   req.checkBody("image", "You must upload an image").isImage(imageFile);
 
-  var title = req.body.title;
-  var slug = title.replace(/\s+/g, "-").toLowerCase();
-  var desc = req.body.desc;
-  var price = req.body.price;
-  var discountPrice = req.body.discountPrice;
-  var type = req.body.type;
+  let title = req.body.title;
+  let slug = title.replace(/\s+/g, "-").toLowerCase();
+  let desc = req.body.desc;
+  let price = req.body.price;
+  let discountPrice = req.body.discountPrice;
+  let type = req.body.type;
 
-  var errors = req.validationErrors();
+  let errors = req.validationErrors();
 
   if (errors) {
     res.render("../admin/add_home_page", {
@@ -101,9 +101,9 @@ router.post("/add-product", function (req, res) {
           discountPrice: discountPrice,
         });
       } else {
-        var price2 = parseFloat(price).toFixed(2);
-        var discountPrice2 = parseFloat(discountPrice).toFixed(2);
-        var homePage = new HomePage({
+        let price2 = parseFloat(price).toFixed(2);
+        let discountPrice2 = parseFloat(discountPrice).toFixed(2);
+        let homePage = new HomePage({
           title: title,
           slug: slug,
           desc: desc,
@@ -139,8 +139,8 @@ router.post("/add-product", function (req, res) {
           );
 
           if (imageFile != "") {
-            var productImage = req.files.image;
-            var Uploadpath =
+            let productImage = req.files.image;
+            let Uploadpath =
               "public/home_images/" + homePage._id + "/" + imageFile;
 
             productImage.mv(Uploadpath, (err) => {
@@ -158,7 +158,7 @@ router.post("/add-product", function (req, res) {
 
 // GET edit product
 router.get("/edit-product/:id", isAdmin, function (req, res) {
-  var errors;
+  let errors;
 
   if (req.session.errors) errors = req.session.errors;
   req.session.errors = null;
@@ -168,8 +168,8 @@ router.get("/edit-product/:id", isAdmin, function (req, res) {
       console.log(err);
       res.redirect("/admin/home-page");
     } else {
-      var galleryDir = "public/home_images/" + p._id + "/gallery";
-      var galleryImages = null;
+      let galleryDir = "public/home_images/" + p._id + "/gallery";
+      let galleryImages = null;
 
       fs.readdir(galleryDir, function (err, files) {
         if (err) {
@@ -197,8 +197,8 @@ router.get("/edit-product/:id", isAdmin, function (req, res) {
 // POST edit product
 router.post("/edit-product/:id", function (req, res) {
   if (!req.files || Object.keys(req.files).length === 0) {
-    // var imageFile = typeof req.files.target_file !== "undefined" ? req.files.target_file.name : "";
-    var imageFile = "";
+    // let imageFile = typeof req.files.target_file !== "undefined" ? req.files.target_file.name : "";
+    let imageFile = "";
   } else {
     imageFile =
       typeof req.files.image !== "undefined" ? req.files.image.name : "";
@@ -209,16 +209,16 @@ router.post("/edit-product/:id", function (req, res) {
   req.checkBody("price", "Price must have a value").isDecimal();
   req.checkBody("image", "You must upload an image").isImage(imageFile);
 
-  var title = req.body.title;
-  var slug = title.replace(/\s+/g, "-").toLowerCase();
-  var desc = req.body.desc;
-  var price = req.body.price;
-  var discountPrice = req.body.discountPrice;
-  var type = req.body.type;
-  var pimage = req.body.pimage;
-  var id = req.params.id;
+  let title = req.body.title;
+  let slug = title.replace(/\s+/g, "-").toLowerCase();
+  let desc = req.body.desc;
+  let price = req.body.price;
+  let discountPrice = req.body.discountPrice;
+  let type = req.body.type;
+  let pimage = req.body.pimage;
+  let id = req.params.id;
 
-  var errors = req.validationErrors();
+  let errors = req.validationErrors();
 
   if (errors) {
     req.session.errors = errors;
@@ -257,8 +257,8 @@ router.post("/edit-product/:id", function (req, res) {
                   function (err) {
                     if (err) console.log(err);
 
-                    var productImage = req.files.image;
-                    var Uploadpath =
+                    let productImage = req.files.image;
+                    let Uploadpath =
                       "public/home_images/" + id + "/" + imageFile;
 
                     productImage.mv(Uploadpath, (err) => {
@@ -280,10 +280,10 @@ router.post("/edit-product/:id", function (req, res) {
 
 // POST product gallery
 router.post("/product-gallery/:id", function (req, res) {
-  var productImage = req.files.file;
-  var id = req.params.id;
-  var path1 = "public/home_images/" + id + "/gallery/" + productImage.name;
-  var thumbsPath =
+  let productImage = req.files.file;
+  let id = req.params.id;
+  let path1 = "public/home_images/" + id + "/gallery/" + productImage.name;
+  let thumbsPath =
     "public/home_images/" + id + "/gallery/thumbs/" + productImage.name;
 
   productImage.mv(path1, function (err) {
@@ -300,9 +300,9 @@ router.post("/product-gallery/:id", function (req, res) {
 
 // GET delete image
 router.get("/delete-image/:image", isAdmin, function (req, res) {
-  var originalImage =
+  let originalImage =
     "public/home_images/" + req.query.id + "/gallery/" + req.params.image;
-  var thumbImage =
+  let thumbImage =
     "public/home_images/" +
     req.query.id +
     "/gallery/thumbs/" +
@@ -326,8 +326,8 @@ router.get("/delete-image/:image", isAdmin, function (req, res) {
 
 // GET delete product
 router.get("/delete-product/:id", isAdmin, function (req, res) {
-  var id = req.params.id;
-  var path1 = "public/home_images/" + id;
+  let id = req.params.id;
+  let path1 = "public/home_images/" + id;
 
   fse.remove(path1, function (err) {
     if (err) {

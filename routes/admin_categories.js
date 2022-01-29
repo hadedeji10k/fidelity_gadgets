@@ -4,13 +4,13 @@ const auth = require("../config/auth");
 const isAdmin = auth.isAdmin;
 
 // get Category module
-var Category = require("../models/category");
+let Category = require("../models/category");
 
 // GET Category index
 router.get("/", isAdmin, async function (req, res) {
   const query = {};
   const sort = { _id: -1 };
-  var count;
+  let count;
 
   Category.countDocuments(function (err, c) {
     count = c;
@@ -39,7 +39,7 @@ router.get("/page/:page/:totalPages", async function (req, res) {
     res.redirect("/admin/categories");
   }
 
-  var count;
+  let count;
 
   const categories = await Category.find()
     .sort({ _id: -1 })
@@ -60,7 +60,7 @@ router.get("/page/:page/:totalPages", async function (req, res) {
 
 // GET add Category
 router.get("/add-category", isAdmin, function (req, res) {
-  var title = "";
+  let title = "";
 
   res.render("../admin/add_category", {
     title: title,
@@ -71,10 +71,10 @@ router.get("/add-category", isAdmin, function (req, res) {
 router.post("/add-category", function (req, res) {
   req.checkBody("title", "Title must have a value").notEmpty();
 
-  var title = req.body.title;
-  var slug = title.replace(/\s+/g, "-").toLowerCase();
+  let title = req.body.title;
+  let slug = title.replace(/\s+/g, "-").toLowerCase();
 
-  var errors = req.validationErrors();
+  let errors = req.validationErrors();
   if (errors) {
     res.render("../admin/add_category", {
       errors: errors,
@@ -89,7 +89,7 @@ router.post("/add-category", function (req, res) {
           slug: slug,
         });
       } else {
-        var category = new Category({
+        let category = new Category({
           title: title,
           slug: slug,
         });
@@ -129,11 +129,11 @@ router.get("/edit-category/:id", isAdmin, function (req, res) {
 router.post("/edit-category/:id", function (req, res) {
   req.checkBody("title", "Title must have a value").notEmpty();
 
-  var title = req.body.title;
-  var slug = title.replace(/\s+/g, "-").toLowerCase();
-  var id = req.params.id;
+  let title = req.body.title;
+  let slug = title.replace(/\s+/g, "-").toLowerCase();
+  let id = req.params.id;
 
-  var errors = req.validationErrors();
+  let errors = req.validationErrors();
   if (errors) {
     res.render("../admin/edit_category", {
       errors: errors,

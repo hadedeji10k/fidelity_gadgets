@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
 const auth = require("../config/auth");
 const isUser = auth.isUser;
 
-var url = require("url");
+let url = require("url");
 
 function getFormattedUrl(req) {
   return url.format({
@@ -16,7 +16,7 @@ function getFormattedUrl(req) {
 }
 
 // get user module
-var User = require("../models/user");
+let User = require("../models/user");
 
 // Get register
 router.get("/register", function (req, res) {
@@ -41,7 +41,7 @@ router.post("/register", function (req, res) {
   req.checkBody("password", "Password is required!").notEmpty();
   req.checkBody("password2", "Password must match!").equals(password);
 
-  var errors = req.validationErrors();
+  let errors = req.validationErrors();
 
   if (errors) {
     res.render("register", {
@@ -217,7 +217,7 @@ router.post("/change-password/:id/:key", function (req, res) {
   req.checkBody("password", "Password is required!").notEmpty();
   req.checkBody("password2", "Password must match!").equals(password);
 
-  var errors = req.validationErrors();
+  let errors = req.validationErrors();
 
   if (errors) {
     res.render("change_password", {
@@ -277,7 +277,7 @@ router.post("/change-email/:id", function (req, res) {
 
   req.checkBody("email", "E-mail is required!").notEmpty();
 
-  var errors = req.validationErrors();
+  let errors = req.validationErrors();
 
   if (errors) {
     res.render("change_email", {
@@ -330,7 +330,7 @@ router.post("/change-phone/:id", function (req, res) {
 
   req.checkBody("phone", "Phone Number is required!").notEmpty();
 
-  var errors = req.validationErrors();
+  let errors = req.validationErrors();
 
   if (errors) {
     res.render("change_phone", {

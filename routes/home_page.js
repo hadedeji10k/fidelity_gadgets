@@ -4,17 +4,17 @@ const fs = require("fs");
 const fse = require("fs-extra");
 
 // get HomePage module
-var HomePage = require("../models/home-page");
+let HomePage = require("../models/home-page");
 
 // Get single HomePage details
 router.get("/:product", function (req, res) {
-  var galleryImages = null;
+  let galleryImages = null;
 
   HomePage.findOne({ slug: req.params.product }, function (err, product) {
     if (err) {
       console.log(err);
     } else {
-      var galleryDir = "public/home_images/" + product._id + "/gallery";
+      let galleryDir = "public/home_images/" + product._id + "/gallery";
 
       fs.readdir(galleryDir, function (err, files) {
         if (err) {
